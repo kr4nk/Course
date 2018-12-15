@@ -63,13 +63,11 @@ if code >= 200 && code < 300 {
     } else {
         print("Header undefined")
     }
-} else {
-    if headersHTTP.errorMessage != nil {
+} else if headersHTTP.errorMessage != nil {
         print(headersHTTP.errorMessage!)
     } else {
          print("Header undefined")
     }
-}
 
 let messegasHeaders: (message:String?, errorMessage:String?)
 //
