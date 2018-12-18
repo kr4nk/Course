@@ -60,21 +60,21 @@ for value in year.keys {
 
 var chessDesk = [String: Bool]()
 
-let letters = ["a", "b", "c"]//"abcdefghijklmnopqrstuvwxyz"
+let letters = "abcdefghijklmnopqrstuvwxyz"
 
-var posDict = [String: Int]()
-
-var index = 1
-
-for char in letters {
-    posDict[String(char)] = index
-    index += 1
-}
-
-for letter in 0..<letters.count {
-    for number in 0..<index {
-        chessDesk["\(letters[letter])\(index)"] = (letter % 2 != number % 2) ? true : false
+for (i, letter) in letters.enumerated() {
+    for number in 1...26 {
+        chessDesk[String(letter) + String(number)] = ((i + 1) + number) % 2 != 0
     }
 }
 
 print(chessDesk)
+
+let pos = "s2"
+
+if chessDesk[pos] != nil {
+    let color = (chessDesk[pos]!) ? "white" : "black"
+    print("\(pos) - \(color)")
+} else {
+    print("Error position")
+}
