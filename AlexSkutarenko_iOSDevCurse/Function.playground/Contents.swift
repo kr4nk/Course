@@ -48,8 +48,12 @@ print("\n")
 //4. Разберитесь с inout самостоятельно и выполните задание номер 3 так, чтобы функция не возвращала перевернутый массив, но меняла элементы в существующем. Что будет если убрать inout?
 
 func arrayInsert(array: inout [Int]) {
-    let temp = array.count
-    array.insert(temp, at: 0)
+    
+    var temp = [Int]()
+    for value in array.reversed() {
+        temp.append(value)
+    }
+    array = temp
 }
 
 arrayInsert(array: &arrayInt)
