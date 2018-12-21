@@ -59,7 +59,7 @@ arrayInsert(array: &arrayInt)
 
 func stringM (someText: String) -> String {
     
-//    let numbers = [0:"zero", 1:"one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9:"nine", 10:"ten"]
+   let numbers = ["0":"zero", "1":"one", "2":"two", "3":"three", "4":"four", "5":"five", "6":"six", "7":"seven", "8":"eight", "9":"nine"]
     var resultString = ""
     
     for char in someText.lowercased() {
@@ -71,13 +71,13 @@ func stringM (someText: String) -> String {
         case " ":
             resultString += " "
             
-//        case [0:"zero", 1:"one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9:"nine", 10:"ten"]:
-            
-            
-        case "b"..."z":
+        case "0"..."9":
+            resultString += numbers[String(char)]!
+
+        case "b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z":
             resultString += char
-            
-        case "a", "e", "u", "o":
+    
+        case "a","e","i","o","u":
             resultString += char.uppercased()
             
         default:
@@ -87,7 +87,9 @@ func stringM (someText: String) -> String {
     return resultString
 }
 
-let text = stringM(someText: "in this case, 3 to the power of 10). It multiplies a starting value of 1 (that is, 3 to the power of 0) by 3, ten times, using a closed range that starts with 1 and ends with 10. For this calculation, the individual counter values each time through the loop are unnecessary—the code simply 101")
+let text = stringM(someText: "In this case, 3 to the power of 10). It multiplies a starting value of 1 (that is, 3 to the power of 0) by 3, ten times, using a closed range that starts with 1 and ends with 10. For this calculation, the individual counter values each time through the loop are unnecessary—the code simply 101")
 
 print(text)
+
+
 
