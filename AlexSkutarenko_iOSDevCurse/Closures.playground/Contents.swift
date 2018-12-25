@@ -84,3 +84,20 @@ let sortedArray =
 print(sortedArray)
 
 //5. Проделайте задание №3 но для нахождения минимальной и максимальной буквы из массива букв (соответственно скалярному значению)
+
+func closureBoolFuncChar (array: String, closure:(Character?, Character) -> Bool) -> String {
+    var storage: Character?
+    
+    for i in array {
+        if closure(storage, i) {
+            storage = i
+        }
+    }
+    return String(storage!)
+}
+
+let maxChar = closureBoolFuncChar(array: str) {$0 == nil || $0! < $1}
+print(maxChar)
+
+let minChar = closureBoolFuncChar(array: str) {$0 == nil || $0! > $1}
+print(minChar)
