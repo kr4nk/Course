@@ -71,11 +71,11 @@ func unicodeBoard (piece: Chess) -> String {
 
 func printChessboard(chess: [Chess]) {
     let col = ["A", "B", "C", "D", "E", "F", "G", "H"]
-    var bCell = "\u{2b1b}"
-    var wCell = "\u{2b1c}"
+    let bCell = "◼️"//\u{2b1b}"
+    let wCell = "◽️"//\u{2b1c}"
     for row in 1...8 {
         var line = ""
-        line += "\(9 - row)"
+        line += "\(9 - row) "
         for (index, column) in col.enumerated() {
             var isEmpty = true
             for piece in chess {
@@ -93,11 +93,10 @@ func printChessboard(chess: [Chess]) {
         }
         print(line)
     }
-    print("  A B C D E F G H")
+    print("   A B C D E F G H")
 }
 printChessboard(chess: arabicMate)
     
 
-
-
 //4. Создайте функцию, которая будет принимать шахматную фигуру и тюпл новой позиции. Эта функция должна передвигать фигуру на новую позицию, причем перемещение должно быть легальным: нельзя передвинуть фигуру за пределы поля и нельзя двигать фигуры так, как нельзя их двигать в реальных шахматах (для мегамонстров программирования). Вызовите эту функцию для нескольких фигур и распечатайте поле снова.
+
