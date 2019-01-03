@@ -9,7 +9,7 @@ struct Student {
     let firstName: String
     let lastName: String
     let birthDate: Int
-    let averageScore: Double
+    var averageScore: Double
 }
 
 let student1 = Student(firstName: "Alex", lastName: "Holt", birthDate: 1995, averageScore: 4.0)
@@ -38,16 +38,42 @@ print("\nSorted by Score")
 rollCall(array: sortedArraybyScore)
 
 //4. Отсортируйте теперь массив по фамилии (по возрастанию), причем если фамилии одинаковые, а вы сделайте так чтобы такое произошло, то сравниваются по имени. Распечатайте “журнал”.
-/*
-var sortedArraybyName = journal.sorted(by: {$0.lastName < $1.lastName})
+
+let student5 = Student(firstName: "Tomy", lastName: "Thompson", birthDate: 1992, averageScore: 2.5)
+let student6 = Student(firstName: "Bob", lastName: "Brown", birthDate: 1992, averageScore: 2.5)
+
+let journal2 = [student1, student2, student3, student4, student5, student6]
+
+var sortedArraybyName = journal2.sorted(by: {
+    if $0.lastName == $1.lastName {
+        return $0.firstName < $1.firstName
+    }
+    return $0.lastName < $1.lastName
+})
 print("\nSorted by Name")
+
 rollCall(array: sortedArraybyName)
-*/
+
 
 //5. Создайте переменную и присвойте ей ваш существующий массив. Измените в нем данные всех студентов. Изменится ли первый массив? Распечатайте оба массива.
 
+var journalNew = journal2
+
+journalNew[0].averageScore = 3.0
+journalNew[1].averageScore = 3.1
+journalNew[2].averageScore = 3.2
+journalNew[3].averageScore = 3.3
+journalNew[4].averageScore = 3.4
+journalNew[5].averageScore = 3.5
+
+print("\nJournal 2")
+rollCall(array: journal2)
+print("\nNew journal")
+rollCall(array: journalNew)
+
 //6. Теперь проделайте все тоже самое, но не для структуры Студент, а для класса. Какой результат в 5м задании? Что изменилось и почему?
 
+//007. Уровень супермен. Выполните задание шахмат из урока по энумам используя структуры либо классы
 
 
 
