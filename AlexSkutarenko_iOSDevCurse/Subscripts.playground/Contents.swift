@@ -77,6 +77,42 @@ field["a", 1]
 //1. Создайте тип шахматная доска.
 //2. Добавьте сабскрипт, который выдает цвет клетки по координате клетки (буква и цифра).
 //3. Если юзер ошибся координатами - выдавайте нил
+
+struct Chessboard {
+    
+    enum Color: String {
+        case white = "White", black = "Black"
+    }
+    
+    var board = [String: String]()
+    
+    func keyForCell(column: String, andRow row: Int) -> String {
+        return column + String(row)
+    }
+    
+    init(array: [String]) {
+        let count = array.count
+        for letter in 1...count {
+            for figure in 1...count {
+                board[keyForCell(column:array[letter - 1], andRow: figure)] = (letter + figure) % 2 == 0 ? Color.black.rawValue : Color.white.rawValue
+            }
+        }
+    }
+    
+    subscript(column: String, row: Int) -> String? {
+        return board[keyForCell(column: column, andRow: row)]
+    }
+}
+
+let array8 = ["a", "b", "c", "d", "f", "g", "h"]
+
+let chessbrd = Chessboard(array: array8)
+
+chessbrd["b", 2]
+chessbrd["a", 1]
+chessbrd["c", 6]
+chessbrd["c", 9]
+
 //Крестики нолики (Средний уровень)
 //1. Создать тип, представляющий собой поле для игры в крестики нолики
 //На каждой клетке может быть только одно из значений: Пусто, Крестик, Нолик
