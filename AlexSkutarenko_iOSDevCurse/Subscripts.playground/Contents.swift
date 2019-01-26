@@ -117,6 +117,66 @@ chessbrd["c", 9]
 //1. Создать тип, представляющий собой поле для игры в крестики нолики
 //На каждой клетке может быть только одно из значений: Пусто, Крестик, Нолик
 //Добавьте возможность красиво распечатывать поле
+
+struct TicTacToe {
+    
+    let rows: Int
+    let col: Int
+    var cells: [[Icons]]
+    
+    enum Icons: String {
+        case x = " ❌"
+        case o = " ⭕️"
+        case empty = " ⬜️"
+    }
+    
+    init(rows: Int, col: Int) {
+        self.rows = rows
+        self.col = col
+        cells = [Array](repeating: Array(repeating: Icons.empty, count: col), count: rows)
+    }
+    
+    func fieldPrint() {
+        for line in cells {
+            for row in line {
+                print(terminator: "")
+                switch row {
+                case Icons.empty: print(Icons.empty.rawValue, terminator: "")
+                case Icons.x: print(Icons.x.rawValue, terminator: "")
+                case Icons.o: print(Icons.o.rawValue, terminator: "")
+                }
+            }
+            print()
+        }
+        print("\n")
+    }
+    
+    mutating func fieldClean() {
+        cells = [Array](repeating: Array(repeating: Icons.empty, count: col), count: rows)
+        fieldPrint()
+    }
+    
+    subscript(x: Int, y: Int) -> Icons {
+        get {
+            return cells[x - 1][y - 1]
+        }
+        
+        set {
+            if cells[x - 1][y - 1] == Icons.empty && 1...rows ~= x && 1...col ~= y {
+                cells[x - 1][y - 1] = newValue
+                fieldPrint()
+            }
+        }
+    }
+}
+
+var player = TicTacToe(rows: 3, col: 3)
+
+player[2, 2] = .x
+player[2, 3] = .o
+
+
+
 //2. Добавьте сабскрипт, который устанавливает значение клетки по ряду и столбцу,
 //причем вы должны следить за тем, чтобы программа не падала если будет введен не существующий ряд или столбец.
 //3. Также следите за тем, чтобы нельзя было устанавливать крестик либо нолик туда, где они уже что-то есть. Добавьте метод очистки поля.
