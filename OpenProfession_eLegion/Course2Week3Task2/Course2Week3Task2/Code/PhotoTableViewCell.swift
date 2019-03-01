@@ -8,6 +8,26 @@
 
 import UIKit
 
-class PhotoTableViewCell: NSObject {
+class PhotoTableViewCell: UITableViewCell {
 
+    @IBOutlet private weak var picImageView: UIImageView!
+    @IBOutlet private weak var picNameLabel: UILabel!
+    
+    // MARK: - UITableViewCell
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+    }
+    
+    // MARK: - Public
+    
+    func setPhoto(pic image: UIImage, description name: String) {
+        accessoryType = .detailButton
+        
+        picImageView.image = image
+        picNameLabel.text = name
+    }
 }
+
+
